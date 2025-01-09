@@ -5,10 +5,10 @@ services:
     image: distributed-threatfeed
     restart: unless-stopped
     environment:
-      - GITHUB_URL=git@github.com:Bechtle-Darmstadt-MNS/azure-mns-swa-blocklist.git
+      - GITHUB_URL=git@github.com:YOUR-PROFILENAME/YOUR-GIT-PROJECT.git
       - INDEX_FILE=index.html
       - WHITELIST_FILE=whitelist.txt
-      - UPDATE_INTERVAL=60
+      - UPDATE_INTERVAL=1800
     volumes:
       - /docker/43_Distributed-Threatfeed/id_deploy_key:/root/.ssh/id_rsa
     ports:
