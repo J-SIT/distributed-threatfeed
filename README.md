@@ -7,7 +7,7 @@ In my case, malicious IP addresses are stored in a GitHub repository file with t
 
 I used an Alpine Linux, installed nginx git and openssl and then loaded the data from GitHub using a script.
 
-We created a GitHub DeployKey so that the private repository can be retrieved.
+We created a GitHub DeployKey so that the private repository can be retrieved. (GitHub repository settings --> Deploy keys)
 
 ```sh
 ssh-keygen -t ed25519 -C ‘deploy-key’ -f ./id_deploy_key -N ‘’
