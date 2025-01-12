@@ -1,7 +1,7 @@
 FROM alpine:latest
 
 # Install necessary packages
-RUN apk add --no-cache nginx git openssh bash openssl
+RUN apk add --no-cache nginx git openssh bash
 
 # Add scripts and configuration
 COPY fetch_files.sh /usr/local/bin/fetch_files.sh

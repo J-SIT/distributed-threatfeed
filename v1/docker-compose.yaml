@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  nginx-github:
+    container_name: 43_Distributed-Threatfeed
+    image: schefflerit/distributed-threatfeed:v1
+    restart: unless-stopped
+    environment:
+      - GITHUB_URL=git@github.com:YOUR-PROFILENAME/YOUR-GIT-PROJECT.git
+      - INDEX_FILE=index.html
+      - WHITELIST_FILE=whitelist.txt
+      - UPDATE_INTERVAL=1800
+    volumes:
+      - /docker/43_Distributed-Threatfeed/id_deploy_key:/root/.ssh/id_rsa
+    ports:
+      - "8741:80"
+    networks:
+      disthred-nw:
+        ipv4_address: 172.18.43.11
+
+networks:
+  disthred-nw:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.43.0/24
+          gateway: 172.18.43.1

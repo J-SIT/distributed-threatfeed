@@ -1,4 +1,4 @@
-# Distributed-Threatfeed v2
+# Distributed-Threatfeed
 
 This project is about setting up a web server that displays IP addresses from a GitHub repository.
 There is also a whitelist so that only authorised sources can access the information provided.
@@ -23,38 +23,33 @@ Important information: if IP addresses are changed, they are automatically repla
 
 BUT if the whitelist is changed, the container must be restarted as the nginx config must be reloaded. I have not yet had the time to automatically integrate this into the container.
 
-This is version 2 and an HTTP Basic Auth has been added. Since the nginx settings are also changed here, the container must be restarted in one way or another when making adjustments in order to load the new entries.
-
 Here is the compose script
 
 ```yaml
 version: '3.8'
 services:
   nginx-github:
-    container_name: 3_Distributed-Threatfeed_v2
-    image: schefflerit/distributed-threatfeed:latest
+    container_name: 43_Distributed-Threatfeed
+    image: schefflerit/distributed-threatfeed:v1
     restart: unless-stopped
     environment:
-      - GITHUB_URL=git@github.com:YOUR-USERNAME/YOUR-REPOSITORY.git
+      - GITHUB_URL=git@github.com:YOUR-PROFILE-NAME/YOUR-REPOSITORY.git
       - INDEX_FILE=index.html
       - WHITELIST_FILE=whitelist.txt
-      - UPDATE_INTERVAL=60
-      - BASIC_AUTH=true
-      - BASIC_AUTH_USER=myuser
-      - BASIC_AUTH_PASSWORD=mypassword
+      - UPDATE_INTERVAL=1800
     volumes:
-      - /docker/03_threadfeed/id_deploy_key:/root/.ssh/id_rsa
+      - /docker/43_Distributed-Threatfeed/id_deploy_key:/root/.ssh/id_rsa
     ports:
       - "8741:80"
     networks:
       disthred-nw:
-        ipv4_address: 172.18.3.11
+        ipv4_address: 172.18.43.11
 
 networks:
   disthred-nw:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.18.3.0/24
-          gateway: 172.18.3.1
+        - subnet: 172.18.43.0/24
+          gateway: 172.18.43.1
 ```
