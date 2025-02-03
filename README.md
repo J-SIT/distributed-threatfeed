@@ -10,7 +10,7 @@ I used an Alpine Linux, installed nginx git and openssl and then loaded the data
 We created a GitHub DeployKey so that the private repository can be retrieved. (GitHub repository settings --> Deploy keys)
 
 ```sh
-ssh-keygen -t ed25519 -C ‘deploy-key’ -f ./id_deploy_key -N ‘’
+ssh-keygen -t ed25519 -C "deploy-key" -f ./id_deploy_key -N ""
 ```
 
 Simply download all the files and create the container:
