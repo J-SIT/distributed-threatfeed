@@ -15,8 +15,8 @@ RUN chmod 644 /etc/nginx/nginx.conf
 
 # Create Folder
 RUN mkdir /var/www/html
-RUN chown -R nginx:nginx /var/www/html
-RUN chmod -R 644 /var/www/html
+RUN chown -R 1000:1000 /var/www/html
+RUN chmod -R 777 /var/www/html
 
 # Create index.html
 RUN touch /var/www/html/index.html
